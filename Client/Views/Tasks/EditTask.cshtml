@@ -1,0 +1,21 @@
+﻿@model AitukTask
+@using Client.Data
+
+@using (Html.BeginForm("EditTask", "Tasks", FormMethod.Post))
+{
+    @* Форма редактирования задачи *@
+    <div>
+        @* Поля для ввода *@
+        @Html.TextBoxFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Description)
+        @Html.DropDownListFor(m => m.StatusID, new SelectList(DataBase.GetStatusesFromDatabase(), "Id", "Name"))
+        
+        @* Кнопка для редактирования *@
+        <button type="submit">Сохранить изменения</button>
+    </div>
+
+    @* Дополнительная валидация *@
+    @Html.ValidationMessageFor(m => m.Name)
+    @Html.ValidationMessageFor(m => m.Description)
+    @Html.ValidationMessageFor(m => m.StatusID)
+}

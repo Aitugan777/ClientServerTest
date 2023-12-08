@@ -1,0 +1,23 @@
+﻿@model List<AitukTask>
+
+<table>
+    <tr>
+        <th>Наименование</th>
+        <th>Описание</th>
+        <th>Статус</th>
+    </tr>
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.Name</td>
+            <td>@task.Description</td>
+            <td>@task.StatusID</td>
+            <td>
+                <a href="@Url.Action("EditTask", "Tasks", new { id = task.Id })">Редактировать</a> |
+                <a href="@Url.Action("DeleteTask", "Tasks", new { id = task.Id })">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<button onclick="location.href='@Url.Action("AddTask", "Tasks")'">Добавить</button>

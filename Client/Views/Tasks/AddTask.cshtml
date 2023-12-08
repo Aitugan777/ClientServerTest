@@ -1,0 +1,21 @@
+﻿@model AitukTask
+@using Client.Data
+
+@using (Html.BeginForm("AddTask", "Tasks", FormMethod.Post))
+{
+    @* Форма добавления задачи *@
+        <div>
+        @* Поля для ввода *@
+        @Html.TextBoxFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Description)
+        @Html.DropDownListFor(m => m.StatusID, new SelectList(DataBase.GetStatusesFromDatabase(), "Id", "Name"))
+
+        @* Кнопка для добавления *@
+            <button type="submit">Добавить</button>
+        </div>
+
+    @* Дополнительная валидация *@
+    @Html.ValidationMessageFor(m => m.Name)
+    @Html.ValidationMessageFor(m => m.Description)
+    @Html.ValidationMessageFor(m => m.StatusID)
+}
